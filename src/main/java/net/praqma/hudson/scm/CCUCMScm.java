@@ -308,7 +308,11 @@ public class CCUCMScm extends SCM {
     			throw new ScmException( "No last baseline stored" );
     		}
     		Baseline bl = UCMEntity.getBaseline( bls, true );
-    		//Baseline loaded = (Baseline) RemoteUtil.loadEntity( project.getSomeWorkspace(), bl, getSlavePolling() );
+    		try {
+				RemoteUtil.loadEntity( project.getSomeWorkspace(), listener, bl, getSlavePolling() );
+			} catch( Exception e ) {
+				e.printStackTrace();
+			}
     		return bl;
     	} catch( FileNotFoundException e ) {
 
@@ -318,9 +322,6 @@ public class CCUCMScm extends SCM {
     	} catch( UCMException e ) {
 			logger.warning( "Unable to get last baseline!" );
 			throw new ScmException( "Unable to get last baseline" );
-		//} catch( CCUCMException e ) {
-		//	logger.warning( "Unable to load last baseline" );
-		//	throw new ScmException( "Unable to load last baseline" );
 		} finally {
     		try {
 				fr.close();
@@ -735,12 +736,19 @@ public class CCUCMScm extends SCM {
 
         storeStateParameters(state);
 
-        PrintStream consoleOut = listener.getLogger();
-        printParameters(consoleOut);
+        PrintStream out = listener.getLogger();
+        printParameters(out);
 
 
         PollingResult p = PollingResult.NO_CHANGES;
-        consoleOut.println("[" + Config.nameShort + "] polling streams: " + polling);
+        out.println("[" + Config.nameShort + "] polling streams: " + polling);
+        
+        try {
+			lastBaseline = getLastBaseline( project, listener );
+		} catch( ScmException e1 ) {
+			out.println( "WHOOPS!" );
+			e1.printStackTrace();
+		}
         
         state.setCreatebaseline(createBaseline);
         /* Trim template, strip out quotes */
@@ -755,16 +763,16 @@ public class CCUCMScm extends SCM {
 
 	        try {
 		        List<Baseline> baselines = null;
+		        out.println( "Polling" );
 		    	/* Old skool self polling */
 		    	if( polling.isPollingSelf() ) {
 					baselines = getValidBaselinesFromStream(project, state, plevel, state.getStream(), state.getComponent());
 		    	} else {
 		            /* Find the Baselines and store them */
-		            baselines = getBaselinesFromStreams( project, listener, consoleOut, state, state.getStream(), state.getComponent(), polling.isPollingChilds() );
+		            baselines = getBaselinesFromStreams( project, listener, out, state, state.getStream(), state.getComponent(), polling.isPollingChilds() );
 		    	}
 
 		        filterBaselines( baselines );
-
 		        if( baselines.size() > 0 ) {
 		            p = PollingResult.BUILD_NOW;
 
@@ -779,8 +787,9 @@ public class CCUCMScm extends SCM {
 						try {
 							lastBaseline = getLastBaseline( project, listener );
 						} catch( ScmException e ) {
-							consoleOut.println( e.getMessage() );
+							out.println( e.getMessage() );
 						}
+						
 						boolean newer = true;
 						if( lastBaseline != null ) {
 							//if( lastBaseline.getDate().after( state.getBaseline().getDate() ) ) {
@@ -805,6 +814,7 @@ public class CCUCMScm extends SCM {
 		            state.remove();
 		        }
 		    } catch (ScmException e) {
+		    	out.println( "NO BASELINES: " + e.getMessage() );
 				logger.warning( "Could not get any baselines: " + e.getMessage(), id );
 				p = PollingResult.NO_CHANGES;
 			}

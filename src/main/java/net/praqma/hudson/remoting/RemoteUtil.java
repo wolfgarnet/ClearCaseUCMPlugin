@@ -115,7 +115,57 @@ public abstract class RemoteUtil {
 		}
 	}
 
-	public static UCMEntity loadEntity( FilePath workspace, UCMEntity entity, boolean slavePolling ) throws CCUCMException {
+	/*
+	public static String loadEntity( FilePath workspace, TaskListener listener, UCMEntity entity, boolean slavePolling ) throws CCUCMException {
+		System.out.println( "Workspace: " + workspace );
+		System.out.println( "Workspace: " + workspace.getBaseName() );
+		System.out.println( "Workspace: " + workspace.getName() );
+		System.out.println( "Workspace: " + workspace.getRemote() );
+		System.out.println( "Workspace: " + workspace.getChannel() );
+		System.out.println( "Workspace: " + workspace.getParent() );
+		try {
+			if( slavePolling ) {
+				return workspace.act( new LoadEntity( entity, listener ) );
+			} else {
+				LoadEntity t = new LoadEntity( entity, listener );
+				return t.invoke( null, null );
+			}
+
+		} catch( Exception e ) {
+			throw new CCUCMException( e.getMessage() );
+		}
+	}
+	*/
+	
+	public static String loadEntity( FilePath workspace, TaskListener listener, UCMEntity entity, boolean slavePolling ) throws CCUCMException {
+
+		try {
+			if( slavePolling ) {
+				Future<String> i = null;
+
+				if( workspace.isRemote() ) {
+					final Pipe pipe = Pipe.createRemoteToLocal();
+
+					i = workspace.actAsync( new LoadEntity( entity, listener, pipe, Logger.getSubscriptions() ) );
+					logger.redirect( pipe.getIn() );
+
+				} else {
+					i = workspace.actAsync( new LoadEntity( entity, listener, null, Logger.getSubscriptions() ) );
+				}
+
+				return i.get();
+			} else {
+				LoadEntity t = new LoadEntity( entity, listener, null, Logger.getSubscriptions() );
+				return t.invoke( null, null );
+			}
+
+		} catch( Exception e ) {
+			throw new CCUCMException( e.getMessage() );
+		}
+	}
+	
+	/*
+	public static UCMEntity loadEntity( FilePath workspace, TaskListener lister, UCMEntity entity, boolean slavePolling ) throws CCUCMException {
 
 		try {
 			if( slavePolling ) {
@@ -141,6 +191,7 @@ public abstract class RemoteUtil {
 			throw new CCUCMException( e.getMessage() );
 		}
 	}
+	*/
 
 	public static String getClearCaseVersion( FilePath workspace, Project project ) throws CCUCMException {
 

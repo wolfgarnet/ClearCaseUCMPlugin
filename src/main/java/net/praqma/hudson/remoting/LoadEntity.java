@@ -11,10 +11,11 @@ import net.praqma.util.debug.Logger;
 import net.praqma.util.debug.appenders.StreamAppender;
 
 import hudson.FilePath.FileCallable;
+import hudson.model.TaskListener;
 import hudson.remoting.Pipe;
 import hudson.remoting.VirtualChannel;
 
-public class LoadEntity implements FileCallable<UCMEntity> {
+public class LoadEntity implements FileCallable<String> {
 
 	private static final long serialVersionUID = -8984877325832486334L;
 
@@ -23,7 +24,9 @@ public class LoadEntity implements FileCallable<UCMEntity> {
 	
 	private Set<String> subscriptions;
 	
-	public LoadEntity( UCMEntity entity, Pipe pipe, Set<String> subscriptions ) {
+	private TaskListener listener;
+	
+	public LoadEntity( UCMEntity entity, TaskListener listener, Pipe pipe, Set<String> subscriptions ) {
 		this.entity = entity;
 		this.pipe = pipe;
 		
@@ -31,8 +34,9 @@ public class LoadEntity implements FileCallable<UCMEntity> {
     }
     
     @Override
-    public UCMEntity invoke( File f, VirtualChannel channel ) throws IOException, InterruptedException {
-        
+    public String invoke( File f, VirtualChannel channel ) throws IOException, InterruptedException {
+        PrintStream out = listener.getLogger();
+    	/*
     	StreamAppender app = null;
     	if( pipe != null ) {
 	    	PrintStream toMaster = new PrintStream( pipe.getOut() );
@@ -40,17 +44,20 @@ public class LoadEntity implements FileCallable<UCMEntity> {
 	    	Logger.addAppender( app );
 	    	app.setSubscriptions( subscriptions );
     	}
+    	*/
         
+        /*
     	try {
-			entity.load();
+			//entity.load();
 		} catch (UCMException e) {
-        	Logger.removeAppender( app );
+        	//Logger.removeAppender( app );
         	throw new IOException( "Unable to load " + entity.getShortname() + ":" + e.getMessage() );
 		}
+		*/
 
-    	Logger.removeAppender( app );
+    	//Logger.removeAppender( app );
 
-    	return entity;
+    	return "hello, world";
     }
 
 }
