@@ -300,6 +300,7 @@ public class CCUCMScm extends SCM {
     private Baseline getLastBaseline( AbstractProject<?,?> project, TaskListener listener ) throws ScmException {
     	FileReader fr = null;
     	PrintStream out = listener.getLogger();
+    	out.println( "Before getting last baseline" );
     	try {
     		fr = new FileReader( new File( project.getRootDir(), ".lastbaseline" ) );
     		BufferedReader br = new BufferedReader( fr );
@@ -310,28 +311,37 @@ public class CCUCMScm extends SCM {
     		}
     		Baseline bl = UCMEntity.getBaseline( bls, true );
     		try {
+    			out.println( "Trying to load " + bl );
 				RemoteUtil.loadEntity( project.getSomeWorkspace(), listener, bl, getSlavePolling() );
 			} catch( Exception e ) {
+				out.println( "I failed loading " + bl );
 				e.printStackTrace();
 			}
     		return bl;
     	} catch( FileNotFoundException e ) {
-
+    		out.println( "The file was not found" );
     	} catch( IOException e ) {
+    		out.println( "Could not read last baseline" );
     		logger.warning( "Could not read last baseline" );
     		throw new ScmException( "Could not read last baseline" );
     	} catch( UCMException e ) {
+    		out.println( "Unable to get last baseline!" );
 			logger.warning( "Unable to get last baseline!" );
 			throw new ScmException( "Unable to get last baseline" );
 		} finally {
+			out.println( "Trying to close file" );
 			if( fr != null ) {
 	    		try {
 					fr.close();
+					out.println( "Closed" );
 				} catch( IOException e ) {
 					logger.warning( "Unable to close file" );
+					out.println( "Failed to close file" );
 				}
 			}
     	}
+    	
+    	out.println( "After getting last baseline" );
 
     	return null;
     }
