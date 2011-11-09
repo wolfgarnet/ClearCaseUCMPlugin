@@ -325,7 +325,7 @@ public class CCUCMScm extends SCM {
     		logger.warning( "Could not read last baseline" );
     		throw new ScmException( "Could not read last baseline" );
     	} catch( UCMException e ) {
-    		out.println( "Unable to get last baseline!" );
+    		out.println( "Unable to get last baseline!" + e.getMessage() );
 			logger.warning( "Unable to get last baseline!" );
 			throw new ScmException( "Unable to get last baseline" );
 		} finally {
@@ -689,7 +689,7 @@ public class CCUCMScm extends SCM {
         File logfile = new File(project.getRootDir(), "polling.log");
         app = new FileAppender(logfile);
         app.setTag(id);
-        app.setMinimumLevel(LogLevel.INFO);
+        app.setMinimumLevel(LogLevel.DEBUG);
         Logger.addAppender(app);
 
         /*
