@@ -147,7 +147,7 @@ public abstract class RemoteUtil {
 					final Pipe pipe = Pipe.createRemoteToLocal();
 
 					i = workspace.actAsync( new LoadEntity( entity, listener, pipe, Logger.getSubscriptions() ) );
-					logger.redirect( pipe.getIn() );
+					//logger.redirect( pipe.getIn() );
 
 				} else {
 					i = workspace.actAsync( new LoadEntity( entity, listener, null, Logger.getSubscriptions() ) );
