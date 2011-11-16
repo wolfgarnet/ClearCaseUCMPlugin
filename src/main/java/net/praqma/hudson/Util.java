@@ -19,7 +19,7 @@ import net.praqma.clearcase.ucm.entities.Version;
 import net.praqma.clearcase.ucm.utils.BuildNumber;
 import net.praqma.clearcase.ucm.view.SnapshotView;
 import net.praqma.clearcase.ucm.view.UCMView;
-import net.praqma.clearcase.ucm.view.SnapshotView.COMP;
+import net.praqma.clearcase.ucm.view.SnapshotView.Components;
 import net.praqma.hudson.exception.ScmException;
 import net.praqma.util.debug.Logger;
 import net.praqma.util.debug.Logger.LogLevel;
@@ -257,7 +257,7 @@ public abstract class Util {
 		if( update ) {
 			try {
 				hudsonOut.println( "[" + Config.nameShort + "] Updating view using " + loadModule.toLowerCase() + " modules." );
-				snapview.Update( true, true, true, false, COMP.valueOf( loadModule.toUpperCase() ), null );
+				snapview.Update( true, true, true, false, Components.valueOf( loadModule.toUpperCase() ), null );
 			} catch (UCMException e) {
 				if( e.stdout != null ) {
 					hudsonOut.println( e.stdout );
