@@ -310,7 +310,7 @@ public class CCUCMScm extends SCM {
         return true;
     }
 
-    private Baseline getLastBaseline( AbstractProject<?,?> project, TaskListener listener ) throws ScmException {
+    private Baseline getLastBaseline( AbstractProject<?,?> project, FilePath workspace, TaskListener listener ) throws ScmException {
     	FileReader fr = null;
     	PrintStream out = listener.getLogger();
     	out.println( "Before getting last baseline" );
@@ -325,7 +325,7 @@ public class CCUCMScm extends SCM {
     		Baseline bl = UCMEntity.getBaseline( bls, true );
     		try {
     			out.println( "Trying to load " + bl );
-				RemoteUtil.loadEntity( project.getSomeWorkspace(), listener, bl, getSlavePolling() );
+				RemoteUtil.loadEntity( workspace, listener, bl, getSlavePolling() );
 			} catch( Exception e ) {
 				out.println( "I failed loading " + bl );
 				e.printStackTrace();
@@ -734,7 +734,7 @@ public class CCUCMScm extends SCM {
         out.println("[" + Config.nameShort + "] polling streams: " + polling);
         
         try {
-			lastBaseline = getLastBaseline( project, listener );
+			lastBaseline = getLastBaseline( project, workspace, listener );
 		} catch( ScmException e1 ) {
 			out.println( "WHOOPS!" );
 			e1.printStackTrace();
@@ -775,7 +775,7 @@ public class CCUCMScm extends SCM {
                     /* If ANY */
                     if (plevel == null) {
                         try {
-                            lastBaseline = getLastBaseline(project, listener);
+                            lastBaseline = getLastBaseline(project, workspace, listener);
                         } catch (ScmException e) {
                             out.println(e.getMessage());
                         }

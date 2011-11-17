@@ -36,6 +36,7 @@ public class LoadEntity implements FileCallable<String> {
     @Override
     public String invoke( File f, VirtualChannel channel ) throws IOException, InterruptedException {
         PrintStream out = listener.getLogger();
+        out.println( "I AM HERE" );
     	/*
     	StreamAppender app = null;
     	if( pipe != null ) {
