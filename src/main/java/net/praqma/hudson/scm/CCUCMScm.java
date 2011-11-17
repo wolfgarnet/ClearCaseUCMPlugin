@@ -708,6 +708,13 @@ public class CCUCMScm extends SCM {
 
         PrintStream out = listener.getLogger();
         printParameters(out);
+        
+        out.println( "Dude, the workspace: " + workspace );
+        out.println( "Workspace: " + workspace.getBaseName() );
+        out.println( "Workspace: " + workspace.getName() );
+        out.println( "Workspace: " + workspace.getRemote() );
+        out.println( "Workspace: " + workspace.getChannel() );
+        out.println( "Workspace: " + workspace.getParent() );
 
 
         PollingResult p = PollingResult.NO_CHANGES;
