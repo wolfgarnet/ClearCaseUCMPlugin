@@ -90,7 +90,7 @@ public abstract class RemoteUtil {
 		}
 	}
 
-	public static List<Stream> getRelatedStreams( FilePath workspace, TaskListener listener, Stream stream, boolean pollingChildStreams ) throws CCUCMException {
+	public static List<Stream> getRelatedStreams( FilePath workspace, TaskListener listener, Stream stream, boolean pollingChildStreams, boolean slavePolling ) throws CCUCMException {
 
 		PrintStream out = listener.getLogger();
 
@@ -214,4 +214,16 @@ public abstract class RemoteUtil {
 			throw new CCUCMException( e.getMessage() );
 		}
 	}
+	
+    public static void endView(FilePath workspace, String viewtag) throws CCUCMException {
+
+        try {
+
+            workspace.act( new EndView( viewtag ) );
+
+        } catch (Exception e) {
+            throw new CCUCMException(e.getMessage());
+        }
+    }
+
 }

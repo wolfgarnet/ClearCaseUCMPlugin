@@ -51,15 +51,17 @@ public class CCUCMState {
 		}
 
 		State s = new State( jobName, jobNumber );
-		states.add( s );
+		addState( s );
 		return s;
 	}
 
-	public synchronized boolean removeState( String jobName, Integer jobNumber ) {
-		for( State s : states ) {
-			if( s.getJobName().equals( jobName ) && s.getJobNumber() == jobNumber ) {
-				states.remove( s );
-				return true;
+	public boolean removeState( String jobName, Integer jobNumber ) {
+		synchronized(states) {
+			for( State s : states ) {
+				if( s.getJobName().equals( jobName ) && s.getJobNumber() == jobNumber ) {
+					states.remove( s );
+					return true;
+				}
 			}
 		}
 
@@ -69,7 +71,11 @@ public class CCUCMState {
 	public synchronized boolean removeState( State state ) {
 		return states.remove( state );
 	}
-
+	
+	public synchronized void addState( State state ) {
+		this.states.add( state );
+	}
+	
 	public State getStateByBaseline( String jobName, String baseline ) {
 		for( State s : states ) {
 			if( s.getJobName().equals( jobName ) && s.getBaseline() != null && s.getBaseline().getFullyQualifiedName().equals( baseline ) ) {
@@ -78,10 +84,6 @@ public class CCUCMState {
 		}
 
 		return null;
-	}
-
-	public synchronized void addState( State state ) {
-		this.states.add( state );
 	}
 
 	public boolean stateExists( State state ) {
@@ -131,7 +133,7 @@ public class CCUCMState {
 	}
 
 	public String stringify() {
-		return states.toString();
+		return states.getView().toString();
 	}
 
 	public class State {
