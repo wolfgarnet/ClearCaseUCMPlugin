@@ -29,6 +29,7 @@ public class LoadEntity implements FileCallable<String> {
 	public LoadEntity( UCMEntity entity, TaskListener listener, Pipe pipe, Set<String> subscriptions ) {
 		this.entity = entity;
 		this.pipe = pipe;
+		this.listener = listener;
 		
 		this.subscriptions = subscriptions;
     }
@@ -37,7 +38,7 @@ public class LoadEntity implements FileCallable<String> {
     public String invoke( File f, VirtualChannel channel ) throws IOException, InterruptedException {
         PrintStream out = listener.getLogger();
         out.println( "I AM HERE" );
-    	/*
+    	
     	StreamAppender app = null;
     	if( pipe != null ) {
 	    	PrintStream toMaster = new PrintStream( pipe.getOut() );
@@ -45,7 +46,7 @@ public class LoadEntity implements FileCallable<String> {
 	    	Logger.addAppender( app );
 	    	app.setSubscriptions( subscriptions );
     	}
-    	*/
+    	
         
         /*
     	try {
@@ -55,8 +56,9 @@ public class LoadEntity implements FileCallable<String> {
         	throw new IOException( "Unable to load " + entity.getShortname() + ":" + e.getMessage() );
 		}
 		*/
+		
 
-    	//Logger.removeAppender( app );
+    	Logger.removeAppender( app );
 
     	return "hello, world";
     }
