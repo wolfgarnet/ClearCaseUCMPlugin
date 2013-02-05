@@ -1,4 +1,4 @@
-package net.praqma.hudson.mode;
+package net.praqma.jenkins.ccucm.model;
 
 /**
  * @author cwolfgang
