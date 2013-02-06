@@ -7,7 +7,7 @@ import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.jenkins.ccucm.model.AbstractMode;
 import net.praqma.jenkins.ccucm.model.BaselineSelector;
 import net.praqma.jenkins.ccucm.model.Poller;
-import net.praqma.jenkins.ccucm.parts.selectors.*;
+import net.praqma.jenkins.ccucm.strategies.selectors.*;
 
 /**
  * @author cwolfgang

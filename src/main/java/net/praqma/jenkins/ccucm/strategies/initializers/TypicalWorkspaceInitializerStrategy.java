@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.parts.initializers;
+package net.praqma.jenkins.ccucm.strategies.initializers;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
@@ -11,9 +11,9 @@ import java.io.File;
  *         Date: 05-02-13
  *         Time: 22:15
  */
-public class NormalWorkspaceInitializer extends WorkspaceInitializer {
+public class TypicalWorkspaceInitializerStrategy extends WorkspaceInitializer {
 
-    public NormalWorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace, File changelogFile ) {
+    public TypicalWorkspaceInitializerStrategy( AbstractBuild<?, ?> build, FilePath workspace, File changelogFile ) {
         super( build, workspace, changelogFile );
     }
 

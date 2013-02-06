@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.parts.selectors;
+package net.praqma.jenkins.ccucm.strategies.selectors;
 
 import hudson.FilePath;
 import net.praqma.clearcase.ucm.entities.Baseline;
