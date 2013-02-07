@@ -1,4 +1,4 @@
-package net.praqma.jenkins.clearcaseucm;
+package net.praqma.jenkins.clearcaseucm.changelog;
 
 import hudson.model.AbstractBuild;
 import hudson.scm.ChangeLogSet;

@@ -1,4 +1,4 @@
-package net.praqma.jenkins.clearcaseucm;
+package net.praqma.jenkins.clearcaseucm.changelog;
 
 import hudson.model.User;
 import hudson.scm.ChangeLogSet.Entry;
@@ -94,7 +94,7 @@ public class ClearCaseUCMChangeLogEntry extends Entry {
 		return User.get( author );
 	}
 
-	// Digester in ChangeLogParserImpl cannot call setAuthor successfully, but
+	// Digester in ClearCaseChangeLogParser cannot call setAuthor successfully, but
 	// setMyAuthor works.
 	public void setMyAuthor( String author ) {
 		this.author = author;

@@ -1,4 +1,4 @@
-package net.praqma.jenkins.clearcaseucm;
+package net.praqma.jenkins.clearcaseucm.changelog;
 
 import hudson.model.AbstractBuild;
 import hudson.scm.ChangeLogParser;
@@ -21,9 +21,9 @@ import java.util.logging.Logger;
  * @author Margit Bennetzen
  * 
  */
-public class ChangeLogParserImpl extends ChangeLogParser {
+public class ClearCaseChangeLogParser extends ChangeLogParser {
 
-	protected static Logger logger = Logger.getLogger( ChangeLogParserImpl.class.getName() );
+	protected static Logger logger = Logger.getLogger( ClearCaseChangeLogParser.class.getName() );
 
 	@Override
 	public ChangeLogSet<? extends Entry> parse( AbstractBuild build, File changelogFile ) throws IOException, SAXException {

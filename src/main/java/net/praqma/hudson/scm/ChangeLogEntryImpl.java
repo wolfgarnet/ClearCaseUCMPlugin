@@ -94,7 +94,7 @@ public class ChangeLogEntryImpl extends Entry {
 		return User.get( author );
 	}
 
-	// Digester in ChangeLogParserImpl cannot call setAuthor successfully, but
+	// Digester in ClearCaseChangeLogParser cannot call setAuthor successfully, but
 	// setMyAuthor works.
 	public void setMyAuthor( String author ) {
 		this.author = author;
