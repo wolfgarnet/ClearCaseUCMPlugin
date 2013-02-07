@@ -1,13 +1,15 @@
 package net.praqma.jenkins.clearcaseucm;
 
+import hudson.Extension;
 import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import hudson.model.Result;
+import hudson.model.*;
+import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
+import hudson.tasks.Publisher;
 import net.praqma.jenkins.clearcaseucm.model.AbstractMode;
 import net.praqma.jenkins.clearcaseucm.model.Runner;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -23,28 +25,52 @@ public class ClearCaseUCMNotifier extends Notifier {
 
     private AbstractMode mode;
 
+    @DataBoundConstructor
+    public ClearCaseUCMNotifier() {
+
+    }
+
     public ClearCaseUCMNotifier( AbstractMode mode ) {
         this.mode = mode;
     }
 
     @Override
     public BuildStepMonitor getRequiredMonitorService() {
-        return null;
+        return BuildStepMonitor.NONE;
     }
 
     @Override
     public boolean perform( AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener ) throws InterruptedException, IOException {
+        listener.getLogger().println( Common.PRINTNAME + "Running ClearCaseUCM post build steps" );
+        logger.info( "RESULT: " + build.getResult() );
 
         ClearCaseUCMAction action = mode.getAction( build );
 
         for( Runner runner : mode.getRunners( action.getBaseline() ) ) {
+            listener.getLogger().println( Common.PRINTNAME + "Running " + runner.getName() );
+            logger.info( "Current RESULT: " + build.getResult() );
+
             boolean success = mode.doTreatUnstableAsSuccessful() ? build.getResult().isBetterOrEqualTo( Result.UNSTABLE ) : build.getResult().isBetterThan( Result.UNSTABLE );
-            logger.finer( "Treating build as successful: " + success + " for " + runner.getName() );
+            logger.info( "Treating build as successful: " + success + " for " + runner.getName() );
             if( runner.runOnFailure() || success ) {
                 runner.run( build.getWorkspace(), listener );
             }
         }
 
         return true;
+    }
+
+    @Extension
+    public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
+
+        @Override
+        public boolean isApplicable( Class<? extends AbstractProject> jobType ) {
+            return true;
+        }
+
+        @Override
+        public String getDisplayName() {
+            return "JAJA";
+        }
     }
 }

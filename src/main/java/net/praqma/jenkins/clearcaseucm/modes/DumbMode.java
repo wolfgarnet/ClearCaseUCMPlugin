@@ -9,7 +9,10 @@ import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.jenkins.clearcaseucm.model.*;
 import net.praqma.jenkins.clearcaseucm.runners.PrintRunner;
+import net.praqma.jenkins.clearcaseucm.strategies.changelog.EmptyChangeLogProducer;
 import net.praqma.jenkins.clearcaseucm.strategies.initializers.EmptyWorkspaceInitializer;
+import net.praqma.jenkins.clearcaseucm.strategies.selectors.NoStreamSelector;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +24,9 @@ import java.util.List;
  */
 public class DumbMode extends AbstractMode {
 
-    public DumbMode( Component component, Stream stream, Project.PromotionLevel level ) {
-        super( component, stream, level );
+    @DataBoundConstructor
+    public DumbMode() {
+        super( null, null, null );
     }
 
     @Override
@@ -37,7 +41,7 @@ public class DumbMode extends AbstractMode {
 
     @Override
     public BaselineSelector getBaselineSelector( FilePath workspace ) {
-        return null;
+        return new NoStreamSelector( workspace, component, stream, level );
     }
 
     @Override
@@ -47,7 +51,7 @@ public class DumbMode extends AbstractMode {
 
     @Override
     public ChangeLogProducer getChangeLogProducer( FilePath workspace ) {
-        return null;
+        return new EmptyChangeLogProducer( workspace );
     }
 
     @Override
@@ -66,5 +70,10 @@ public class DumbMode extends AbstractMode {
         public String getDisplayName() {
             return "Dumb mode";
         }
+    }
+
+    @Override
+    public String toString() {
+        return "DUMB!!!";
     }
 }

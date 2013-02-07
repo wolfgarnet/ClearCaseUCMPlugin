@@ -11,6 +11,8 @@ import hudson.model.TaskListener;
 import hudson.scm.*;
 import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.hudson.exception.CCUCMException;
+import net.praqma.jenkins.clearcaseucm.changelog.ClearCaseChangeLogParser;
+import net.praqma.jenkins.clearcaseucm.changelog.ClearCaseUCMRevisionState;
 import net.praqma.jenkins.clearcaseucm.model.*;
 
 import net.praqma.jenkins.clearcaseucm.utils.FileUtilities;
@@ -48,7 +50,14 @@ public class ClearCaseUCMScm extends SCM {
 
     @Override
     public SCMRevisionState calcRevisionsFromBuild( AbstractBuild<?, ?> build, Launcher launcher, TaskListener listener ) throws IOException, InterruptedException {
-        return null;
+        SCMRevisionState scmRS = null;
+
+        ClearCaseUCMAction action = build.getAction( ClearCaseUCMAction.class );
+
+        if( action != null && action.getBaseline() != null ) {
+            scmRS = new ClearCaseUCMRevisionState();
+        }
+        return scmRS;
     }
 
     @Override
@@ -94,7 +103,7 @@ public class ClearCaseUCMScm extends SCM {
         logger.info( "Adding notifier to project with " + mode );
         build.getParent().getPublishersList().add( new ClearCaseUCMNotifier( mode ) );
 
-        return false;
+        return true;
     }
 
 
@@ -120,11 +129,8 @@ public class ClearCaseUCMScm extends SCM {
 
     @Override
     public ChangeLogParser createChangeLogParser() {
-        return null;
+        return new ClearCaseChangeLogParser();
     }
-
-
-
 
 
     @Extension

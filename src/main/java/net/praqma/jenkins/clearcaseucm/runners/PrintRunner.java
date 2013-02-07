@@ -31,6 +31,6 @@ public class PrintRunner implements Runner {
 
     @Override
     public String getName() {
-        return "Dumb runner";
+        return "Print runner";
     }
 }
