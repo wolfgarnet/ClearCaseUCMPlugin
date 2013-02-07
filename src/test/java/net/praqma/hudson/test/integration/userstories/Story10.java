@@ -23,7 +23,7 @@ import java.util.logging.Level;
 public class Story10 extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm-story10", "setup-story10.xml" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm-story10", "setup-story10.xml" );
 	
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();

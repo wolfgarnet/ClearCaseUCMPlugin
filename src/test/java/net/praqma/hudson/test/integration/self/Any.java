@@ -32,7 +32,7 @@ import static org.junit.Assert.assertThat;
 public class Any extends BaseTestClass {
 
     @Rule
-    public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm" );
+    public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm" );
 
     @Rule
     public static DescriptionRule desc = new DescriptionRule();

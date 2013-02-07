@@ -903,7 +903,6 @@ public class CCUCMScm extends SCM {
 	 * @author Margit Bennetzen
 	 * 
 	 */
-	@Extension
 	public static class CCUCMScmDescriptor extends SCMDescriptor<CCUCMScm> implements hudson.model.ModelObject {
 
 		private boolean slavePolling;

@@ -338,7 +338,6 @@ public class CCUCMNotifier extends Notifier {
 	 * @author Margit Bennetzen
 	 * 
 	 */
-	@Extension
 	public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
 		public DescriptorImpl() {

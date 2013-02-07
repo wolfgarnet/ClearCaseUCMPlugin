@@ -42,7 +42,7 @@ public class GetBaselinesTest extends BaseTestClass {
 	public static LoggerRule loggerRule = new LoggerRule();
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm-child-getbaselines" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm-child-getbaselines" );
 
 	private static Logger logger = Logger.getLogger();
 		
@@ -75,7 +75,7 @@ public class GetBaselinesTest extends BaseTestClass {
 		System.out.println( "PATH: " + path );
 		
 		Stream stream = Stream.get( "one_dev", ccenv.getPVob() );
-		Activity activity = Activity.create( "ccucm-activity", stream, ccenv.getPVob(), true, "ccucm activity", null, path );
+		Activity activity = Activity.create( "clearcaseucm-activity", stream, ccenv.getPVob(), true, "clearcaseucm activity", null, path );
 		UCMView.setActivity( activity, path, null, null );
 		
 		try {

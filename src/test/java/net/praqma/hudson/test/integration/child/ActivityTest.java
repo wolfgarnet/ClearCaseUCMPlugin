@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
 public class ActivityTest extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm" );
 
 	private static Logger logger = Logger.getLogger();
 		
@@ -73,7 +73,7 @@ public class ActivityTest extends BaseTestClass {
 		System.out.println( "PATH: " + path );
 		
 		Stream stream = Stream.get( "one_dev", ccenv.getPVob() );
-		Activity activity = Activity.create( "ccucm-activity", stream, ccenv.getPVob(), true, "ccucm activity", null, path );
+		Activity activity = Activity.create( "clearcaseucm-activity", stream, ccenv.getPVob(), true, "clearcaseucm activity", null, path );
 		UCMView.setActivity( activity, path, null, null );
 		
 		try {

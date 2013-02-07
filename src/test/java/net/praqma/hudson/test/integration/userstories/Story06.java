@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
 public class Story06 extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm-story06", "setup-story5.xml" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm-story06", "setup-story5.xml" );
 	
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();

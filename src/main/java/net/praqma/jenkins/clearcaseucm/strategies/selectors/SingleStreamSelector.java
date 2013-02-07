@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.strategies.selectors;
+package net.praqma.jenkins.clearcaseucm.strategies.selectors;
 
 import hudson.FilePath;
 import net.praqma.clearcase.ucm.entities.Baseline;
@@ -6,7 +6,7 @@ import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.hudson.remoting.GetRemoteBaselineFromStream;
-import net.praqma.jenkins.ccucm.model.BaselineSelector;
+import net.praqma.jenkins.clearcaseucm.model.BaselineSelector;
 
 import java.io.IOException;
 import java.util.ArrayList;

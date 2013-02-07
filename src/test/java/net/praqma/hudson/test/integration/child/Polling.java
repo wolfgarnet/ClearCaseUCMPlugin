@@ -41,7 +41,7 @@ import net.praqma.util.debug.Logger;
 public class Polling extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm-child-polling" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm-child-polling" );
 
 	private static Logger logger = Logger.getLogger();
 
@@ -101,7 +101,7 @@ public class Polling extends BaseTestClass {
 		System.out.println( "PATH: " + path );
 		
 		Stream stream = Stream.get( "one_dev", ccenv.getPVob() );
-		Activity activity = Activity.create( "ccucm-activity", stream, ccenv.getPVob(), true, "ccucm activity", null, path );
+		Activity activity = Activity.create( "clearcaseucm-activity", stream, ccenv.getPVob(), true, "clearcaseucm activity", null, path );
 		UCMView.setActivity( activity, path, null, null );
 		
 		return path;

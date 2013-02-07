@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.remote;
+package net.praqma.jenkins.clearcaseucm.remote;
 
 import hudson.FilePath;
 import hudson.model.TaskListener;
@@ -11,10 +11,8 @@ import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.clearcase.ucm.view.SnapshotView;
 import net.praqma.hudson.Config;
-import net.praqma.hudson.Util;
 import net.praqma.hudson.exception.ScmException;
-import net.praqma.hudson.remoting.EstablishResult;
-import net.praqma.jenkins.ccucm.Common;
+import net.praqma.jenkins.clearcaseucm.Common;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +56,12 @@ public class MakeWorkspace implements FilePath.FileCallable<Boolean> {
         } else {
             viewroot = f;
         }
-        makeWorkspace( viewroot, viewtag );
+        try {
+            makeWorkspace( viewroot, viewtag );
+        } catch( Exception e ) {
+            throw new IOException( e );
+        }
+
         return null;
     }
 

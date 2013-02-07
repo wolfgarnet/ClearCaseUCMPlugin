@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.model;
+package net.praqma.jenkins.clearcaseucm.model;
 
 import hudson.FilePath;
 import net.praqma.clearcase.ucm.entities.Baseline;
@@ -8,7 +8,6 @@ import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.hudson.exception.CCUCMException;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 /**

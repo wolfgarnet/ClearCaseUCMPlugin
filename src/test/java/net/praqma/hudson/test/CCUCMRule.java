@@ -150,7 +150,7 @@ public class CCUCMRule extends JenkinsRule {
 		System.out.println( " * Force deliver  : " + forceDeliver );
 		System.out.println( "============================================" );
 		
-		FreeStyleProject project = createFreeStyleProject( "ccucm-project-" + projectName );
+		FreeStyleProject project = createFreeStyleProject( "clearcaseucm-project-" + projectName );
 		
 		// boolean createBaseline, String nameTemplate, boolean forceDeliver, boolean recommend, boolean makeTag, boolean setDescription
 		//CCUCMScm scm = new CCUCMScm( component, "INITIAL", "ALL", false, type, stream, "successful", createBaseline, "[project]_build_[number]", forceDeliver, recommend, tag, description, "jenkins" );
@@ -303,7 +303,7 @@ public class CCUCMRule extends JenkinsRule {
 	
 	public CCUCMBuildAction getBuildAction( AbstractBuild<?, ?> build ) {
 		/* Check the build baseline */
-		logger.info( "Getting ccucm build action from " + build );
+		logger.info( "Getting clearcaseucm build action from " + build );
 		CCUCMBuildAction action = build.getAction( CCUCMBuildAction.class );
 		return action;
 	}
@@ -397,7 +397,7 @@ public class CCUCMRule extends JenkinsRule {
 	}
 	
 	public void testCCUCMPolling( AbstractProject<?, ?> project ) {
-		File polldir = new File( project.getRootDir(), "ccucm-poll-logs" );
+		File polldir = new File( project.getRootDir(), "clearcaseucm-poll-logs" );
 		
 		assertTrue( polldir.exists() );
 	}

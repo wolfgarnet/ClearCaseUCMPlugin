@@ -1,7 +1,6 @@
-package net.praqma.jenkins.ccucm;
+package net.praqma.jenkins.clearcaseucm;
 
 import hudson.FilePath;
-import hudson.model.BuildListener;
 import hudson.model.TaskListener;
 import net.praqma.clearcase.exceptions.ClearCaseException;
 import net.praqma.clearcase.exceptions.ViewException;

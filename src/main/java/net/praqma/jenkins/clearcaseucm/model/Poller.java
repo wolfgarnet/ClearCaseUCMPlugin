@@ -1,4 +1,4 @@
-package net.praqma.jenkins.ccucm.model;
+package net.praqma.jenkins.clearcaseucm.model;
 
 /**
  * @author cwolfgang

@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class BaselinesFound extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm" );
 	
 	private static Logger logger = Logger.getLogger( BaselinesFound.class.getName() );
 	

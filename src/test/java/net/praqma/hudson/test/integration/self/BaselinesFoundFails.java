@@ -27,7 +27,7 @@ import java.util.logging.Level;
 public class BaselinesFoundFails extends BaseTestClass {
 	
 	@Rule
-	public static ClearCaseRule ccenv = new ClearCaseRule( "ccucm" );
+	public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm" );
 	
 	private static Logger logger = Logger.getLogger();
 	

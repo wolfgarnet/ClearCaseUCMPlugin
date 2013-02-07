@@ -1,9 +1,11 @@
-package net.praqma.jenkins.ccucm.model;
+package net.praqma.jenkins.clearcaseucm.model;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
+import net.praqma.clearcase.ucm.entities.Baseline;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author cwolfgang
@@ -14,12 +16,10 @@ public abstract class WorkspaceInitializer {
 
     protected AbstractBuild build;
     protected FilePath workspace;
-    protected File changelogFile;
 
-    public WorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace, File changelogFile ) {
+    public WorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace ) {
         this.build = build;
         this.workspace = workspace;
-        this.changelogFile = changelogFile;
     }
 
     public abstract void initialize();
