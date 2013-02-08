@@ -45,7 +45,7 @@ public class Polling extends BaseTestClass {
 
 	private static Logger logger = Logger.getLogger();
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "changes-child" )
 	@TestDescription( title = "Child polling, polling", text = "baseline available" )
 	public void testPollingChildsWithChanges() throws Exception {
@@ -69,7 +69,7 @@ public class Polling extends BaseTestClass {
 		assertTrue( result.hasChanges() );
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "nochanges-child" )
 	@TestDescription( title = "Child polling, polling", text = "baseline available" )
 	public void testPollingChildsWithNoChanges() throws Exception {

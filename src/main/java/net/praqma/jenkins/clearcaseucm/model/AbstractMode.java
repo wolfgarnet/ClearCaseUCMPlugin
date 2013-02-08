@@ -11,7 +11,9 @@ import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.jenkins.clearcaseucm.ClearCaseUCMAction;
+import net.praqma.jenkins.clearcaseucm.runners.PromoteBaseline;
 import net.praqma.jenkins.clearcaseucm.runners.RecommendBaseline;
+import net.praqma.jenkins.clearcaseucm.runners.TagBaseline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,12 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     protected String subPath = null;
 
     protected boolean treatUnstableAsSuccessful = false;
+
+    /* Post build actions */
+    private boolean tagBaseline = false;
+    private boolean recommendBaseline = false;
+    private boolean promoteBaseline = false;
+    private boolean setBuildDescription = false;
 
     public AbstractMode( Component component, Stream stream, Project.PromotionLevel level ) {
         this.component = component;
@@ -66,7 +74,17 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     public List<Runner> getRunners( ClearCaseUCMAction action ) {
         List<Runner> runners = new ArrayList<Runner>();
 
-        runners.add( new RecommendBaseline( action.getBaseline() ) );
+        if( recommendBaseline ) {
+            runners.add( new RecommendBaseline( action.getBaseline() ) );
+        }
+
+        if( promoteBaseline ) {
+            runners.add( new PromoteBaseline( action.getBaseline(), treatUnstableAsSuccessful ) );
+        }
+
+        if( tagBaseline ) {
+            runners.add( new TagBaseline( action.getBaseline(), action.getBuild().getProject().getDisplayName(), Integer.toString( action.getBuild().getNumber() ) ) );
+        }
 
         return runners;
     }

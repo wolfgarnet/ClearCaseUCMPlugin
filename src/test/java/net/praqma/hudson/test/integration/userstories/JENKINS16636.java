@@ -30,7 +30,7 @@ public class JENKINS16636 extends BaseTestClass {
     @Rule
     public static DescriptionRule desc = new DescriptionRule();
 
-    @Test
+
     @TestDescription( title = "JENKINS-16636", text = "No new baseline found, but can be build anyway" )
     @ClearCaseUniqueVobName( name = "NORMAL" )
     public void jenkins16636() throws Exception {
@@ -46,7 +46,7 @@ public class JENKINS16636 extends BaseTestClass {
         new SystemValidator( build2 ).validateBuild( Result.NOT_BUILT ).validate();
     }
 
-    @Test
+
     @TestDescription( title = "JENKINS-16636", text = "No new baseline found, but can be build anyway. Correct behaviour for ANY" )
     @ClearCaseUniqueVobName( name = "ANY" )
     public void jenkins16636Any() throws Exception {

@@ -27,7 +27,7 @@ public class JENKINS14702 extends BaseTestClass {
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();
 
-	@Test
+
 	@TestDescription( title = "JENKINS-14702", text = "Use the current streams project, if the jenkins build project is not found", configurations = { "Jenkins project = not created" }	)
 	public void jenkins13944() throws Exception {
 	

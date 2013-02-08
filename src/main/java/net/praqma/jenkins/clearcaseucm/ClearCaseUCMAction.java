@@ -23,10 +23,7 @@ public class ClearCaseUCMAction implements Action {
      */
     private Baseline createdBaseline;
 
-    /* Post build actions */
-    private boolean tagBaseline = false;
-    private boolean recommendBaseline = false;
-    private boolean setBuildDescription = false;
+
 
     public ClearCaseUCMAction( AbstractBuild build ) {
         this.build = build;
@@ -61,5 +58,9 @@ public class ClearCaseUCMAction implements Action {
 
     public void setCreatedBaseline( Baseline createdBaseline ) {
         this.createdBaseline = createdBaseline;
+    }
+
+    public AbstractBuild getBuild() {
+        return build;
     }
 }

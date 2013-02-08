@@ -37,7 +37,7 @@ public class Polling extends BaseTestClass {
 
 	private static Logger logger = Logger.getLogger();
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-changes" )
 	public void testPollingSelfWithBaselines() throws Exception {
 		FreeStyleProject project = jenkins.setupProject( "polling-test-with-baselines-" + ccenv.getUniqueName(), "self", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), false, false, false, false );

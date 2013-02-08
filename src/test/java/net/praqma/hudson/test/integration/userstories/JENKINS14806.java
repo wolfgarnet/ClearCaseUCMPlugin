@@ -36,7 +36,7 @@ public class JENKINS14806 extends BaseTestClass {
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();
 
-	@Test
+
 	@TestDescription( title = "JENKINS-14806", text = "Multisite polling finds the same baseline times", configurations = { "ClearCase multisite = true" }	)
 	public void jenkins14806() throws Exception {
 	

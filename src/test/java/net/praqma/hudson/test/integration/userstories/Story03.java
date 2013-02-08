@@ -32,7 +32,7 @@ public class Story03 extends BaseTestClass {
 
 	private static Logger logger = Logger.getLogger();
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "story03a" )
 	@TestDescription( title = "Story 03a", text = "No new baseline on dev stream, poll on child" )
 	public void story03a() throws Exception {
@@ -48,7 +48,7 @@ public class Story03 extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "story03b" )
 	@TestDescription( title = "Story 03b, polling", text = "No new baseline on dev stream, poll on child" )
 	public void story03b() throws Exception {

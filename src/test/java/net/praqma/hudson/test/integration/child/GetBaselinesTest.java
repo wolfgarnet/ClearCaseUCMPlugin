@@ -50,7 +50,7 @@ public class GetBaselinesTest extends BaseTestClass {
 		return jenkins.initiateBuild( projectName, "child", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, true );
 	}
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "nop-child" )
 	@TestDescription( title = "Child polling", text = "baseline available" )
 	public void testNoOptions() throws Exception {

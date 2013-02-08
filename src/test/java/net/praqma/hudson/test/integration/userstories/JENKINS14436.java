@@ -38,7 +38,7 @@ public class JENKINS14436 extends BaseTestClass {
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();
 
-	@Test
+
 	@TestDescription( title = "JENKINS-14436", text = "Not all versions, only the latest are shown" )
 	public void jenkins14436() throws Exception {
 		

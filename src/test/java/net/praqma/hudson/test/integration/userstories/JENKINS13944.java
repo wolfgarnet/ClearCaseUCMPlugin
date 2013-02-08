@@ -26,7 +26,7 @@ public class JENKINS13944 extends BaseTestClass {
 	@Rule
 	public static DescriptionRule desc = new DescriptionRule();
 
-	@Test
+
 	@TestDescription( title = "JENKINS-13944", text = "A baseline ís built successfully, but the tagging is not done, because the tag tyoe is not installed", configurations = { "Tag = true" }	)
 	public void jenkins13944() throws Exception {
 		

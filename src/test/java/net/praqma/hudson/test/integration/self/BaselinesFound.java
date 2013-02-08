@@ -32,7 +32,7 @@ public class BaselinesFound extends BaseTestClass {
 		return jenkins.initiateBuild( projectName, "self", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, false );
 	}
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-nop" )
 	@TestDescription( title = "Self polling", text = "baseline available" )
 	public void testNoOptions() throws Exception {
@@ -45,7 +45,7 @@ public class BaselinesFound extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-recommended" )
 	@TestDescription( title = "Self polling", text = "baseline available", configurations = { "Recommend = true" } )
 	public void testRecommended() throws Exception {
@@ -70,7 +70,7 @@ public class BaselinesFound extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-tagged" )
 	@TestDescription( title = "Self polling", text = "baseline available", configurations = { "Set tag = true" } )
 	public void testTagged() throws Exception {

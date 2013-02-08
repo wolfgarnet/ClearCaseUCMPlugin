@@ -46,7 +46,6 @@ public class ActivityTest extends BaseTestClass {
 		return jenkins.initiateBuild( projectName, "child", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, true );
 	}
 
-	@Test
 	@ClearCaseUniqueVobName( name = "activity-chglg" )
 	public void activityInChangelog() throws Exception {
 		

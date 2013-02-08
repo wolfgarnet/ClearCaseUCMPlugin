@@ -50,7 +50,7 @@ public class BaselinesFound extends BaseTestClass {
 		return jenkins.initiateBuild( projectName, "child", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, true );
 	}
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "nop-child" )
 	@TestDescription( title = "Child polling", text = "baseline available" )
 	public void testNoOptions() throws Exception {
@@ -66,7 +66,7 @@ public class BaselinesFound extends BaseTestClass {
 			.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "recommended-child" )
 	@TestDescription( title = "Child polling", text = "baseline available",	configurations = { "Recommended = true" } )
 	public void testRecommended() throws Exception {
@@ -82,7 +82,7 @@ public class BaselinesFound extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "description-child" )
 	@TestDescription( title = "Child polling", text = "baseline available",	configurations = { "Set description = true" } )
 	public void testDescription() throws Exception {
@@ -99,7 +99,7 @@ public class BaselinesFound extends BaseTestClass {
 	}
 	
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "tagged-child" )
 	@TestDescription( title = "Child polling", text = "baseline available", configurations = { "Set tag = true" } )
 	public void testTagged() throws Exception {

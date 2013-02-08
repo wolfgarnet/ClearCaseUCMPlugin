@@ -35,7 +35,7 @@ public class BaselinesFoundFails extends BaseTestClass {
 		return jenkins.initiateBuild( projectName, "self", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, false );
 	}
 
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-failed-nop" )
 	@TestDescription( title = "Self polling", text = "baseline available, build fails" )
 	public void testNoOptions() throws Exception {
@@ -48,7 +48,7 @@ public class BaselinesFoundFails extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-failed-recommend" )
 	@TestDescription( title = "Self polling", text = "baseline available, build fails", configurations = { "Recommend = true" }	)
 	public void testRecommended() throws Exception {
@@ -61,7 +61,7 @@ public class BaselinesFoundFails extends BaseTestClass {
 		.validate();
 	}
 	
-	@Test
+
 	@ClearCaseUniqueVobName( name = "self-failed-tagged" )
 	@TestDescription( title = "Self polling", text = "baseline available, build fails",	configurations = { "Set tag = true" } )
 	public void testTagged() throws Exception {

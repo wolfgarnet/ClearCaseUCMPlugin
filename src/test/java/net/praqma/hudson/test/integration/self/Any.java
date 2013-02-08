@@ -43,7 +43,7 @@ public class Any extends BaseTestClass {
         return jenkins.initiateBuild( projectName, "self", "_System@" + ccenv.getPVob(), "one_int@" + ccenv.getPVob(), recommend, tag, description, fail, false, false, "", "ANY" );
     }
 
-    @Test
+
     @ClearCaseUniqueVobName( name = "self-any" )
     @TestDescription( title = "Self polling", text = "baselines available, find the newest" )
     public void test() throws Exception {
@@ -56,7 +56,7 @@ public class Any extends BaseTestClass {
                 .validate();
     }
 
-    @Test
+
     @ClearCaseUniqueVobName( name = "self-any-recommend" )
     @TestDescription( title = "Self polling", text = "baselines available, find the newest" )
     public void testRecommend() throws Exception {
@@ -69,7 +69,7 @@ public class Any extends BaseTestClass {
                 .validate();
     }
 
-    @Test
+
     @ClearCaseUniqueVobName( name = "self-any-poll" )
     @TestDescription( title = "Self polling", text = "baselines available, find the newest, poll" )
     public void testPoll() throws Exception {
@@ -93,7 +93,7 @@ public class Any extends BaseTestClass {
         assertThat( result, is( PollingResult.NO_CHANGES ) );
     }
 
-    @Test
+
     @ClearCaseUniqueVobName( name = "self-any-poll2" )
     @TestDescription( title = "Self polling", text = "baselines available, find the newest, add baselines, poll" )
     public void testPollThree() throws Exception {

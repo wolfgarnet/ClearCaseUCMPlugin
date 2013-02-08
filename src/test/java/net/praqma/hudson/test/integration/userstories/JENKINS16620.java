@@ -30,7 +30,7 @@ public class JENKINS16620 extends BaseTestClass {
     @Rule
     public static DescriptionRule desc = new DescriptionRule();
 
-    @Test
+
     @TestDescription( title = "JENKINS-16620", text = "Changed baselines cannot be rebuild" )
     @ClearCaseUniqueVobName( name = "NORMAL" )
     public void jenkins16620() throws Exception {
@@ -47,7 +47,7 @@ public class JENKINS16620 extends BaseTestClass {
         new SystemValidator( build2 ).validateBuild( Result.SUCCESS ).validate();
     }
 
-    @Test
+
     @TestDescription( title = "JENKINS-16620", text = "Changed baselines MUST NOT ABLE TO be rebuild on ANY" )
     @ClearCaseUniqueVobName( name = "ANY" )
     public void jenkins16620Any() throws Exception {

@@ -24,7 +24,7 @@ public class JENKINS16072 extends BaseTestClass {
      * with Jenkins remoting. (Building on a remote slave).
      * @throws Exception 
      */
-    @Test
+
     public void jenkins_16072() throws Exception {
         File testFile = File.createTempFile("objectSerialization", ".test");
         BaselineList list = new BaselineList().addFilter(new NoDeliver());

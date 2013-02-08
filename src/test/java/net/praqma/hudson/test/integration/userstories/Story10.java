@@ -30,7 +30,7 @@ public class Story10 extends BaseTestClass {
 
 	private static Logger logger = Logger.getLogger();
 
-	@Test
+
 	@TestDescription( title = "Story 10", text = "New baseline, bl1, on dev stream, dev1, poll on child, create baselines, but wrong baseline template", configurations = { "Create baselines = true", "Name template = [fail]" } )
 	public void story10() throws Exception {
 		
