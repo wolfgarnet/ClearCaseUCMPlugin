@@ -2,6 +2,7 @@ package net.praqma.jenkins.clearcaseucm.model;
 
 import hudson.FilePath;
 import hudson.model.BuildListener;
+import hudson.model.Result;
 
 import java.io.IOException;
 
@@ -11,7 +12,8 @@ import java.io.IOException;
  *         Time: 12:31
  */
 public interface Runner {
-    public void run( FilePath workspace, BuildListener listener ) throws IOException, InterruptedException;
+    public Result run( FilePath workspace, BuildListener listener, Result result );
     public boolean runOnFailure();
+    public boolean throwOnError();
     public String getName();
 }

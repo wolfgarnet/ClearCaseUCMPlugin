@@ -1,6 +1,7 @@
 package net.praqma.jenkins.clearcaseucm.remote;
 
 import hudson.FilePath;
+import hudson.model.Result;
 import hudson.remoting.VirtualChannel;
 import net.praqma.clearcase.ucm.entities.Baseline;
 

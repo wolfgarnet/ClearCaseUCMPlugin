@@ -4,7 +4,6 @@ import hudson.DescriptorExtensionList;
 import hudson.ExtensionPoint;
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
-import hudson.model.Action;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
 import jenkins.model.Jenkins;
@@ -12,13 +11,9 @@ import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
-import net.praqma.hudson.Config;
 import net.praqma.jenkins.clearcaseucm.ClearCaseUCMAction;
-import net.praqma.jenkins.clearcaseucm.runners.RecommedBaseline;
+import net.praqma.jenkins.clearcaseucm.runners.RecommendBaseline;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +57,7 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     public List<Runner> getRunners( Baseline baseline ) {
         List<Runner> runners = new ArrayList<Runner>();
 
-        runners.add( new RecommedBaseline( baseline ) );
+        runners.add( new RecommendBaseline( baseline ) );
 
         return runners;
     }

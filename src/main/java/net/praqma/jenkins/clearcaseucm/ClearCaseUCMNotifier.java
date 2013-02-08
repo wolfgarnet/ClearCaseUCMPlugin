@@ -53,7 +53,11 @@ public class ClearCaseUCMNotifier extends Notifier {
             boolean success = mode.doTreatUnstableAsSuccessful() ? build.getResult().isBetterOrEqualTo( Result.UNSTABLE ) : build.getResult().isBetterThan( Result.UNSTABLE );
             logger.info( "Treating build as successful: " + success + " for " + runner.getName() );
             if( runner.runOnFailure() || success ) {
-                runner.run( build.getWorkspace(), listener );
+                Result newResult = runner.run( build.getWorkspace(), listener, build.getResult() );
+                if( newResult.isWorseThan( build.getResult() ) ) {
+                    listener.getLogger().println( Common.PRINTNAME + "Changing result to " + newResult );
+                    build.setResult( newResult );
+                }
             }
         }
 
