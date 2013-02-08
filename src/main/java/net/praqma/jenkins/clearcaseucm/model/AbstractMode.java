@@ -7,7 +7,6 @@ import hudson.model.AbstractBuild;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
 import jenkins.model.Jenkins;
-import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
@@ -73,7 +72,7 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     }
 
     public ClearCaseUCMAction createAction( AbstractBuild<?, ?> build ) {
-        ClearCaseUCMAction action = new ClearCaseUCMAction();
+        ClearCaseUCMAction action = new ClearCaseUCMAction( build );
         build.addAction( action );
         return action;
     }

@@ -1,5 +1,6 @@
 package net.praqma.jenkins.clearcaseucm;
 
+import hudson.model.AbstractBuild;
 import hudson.model.Action;
 import net.praqma.clearcase.ucm.entities.Baseline;
 
@@ -9,6 +10,8 @@ import net.praqma.clearcase.ucm.entities.Baseline;
  *         Time: 12:08
  */
 public class ClearCaseUCMAction implements Action {
+
+    private AbstractBuild build;
 
     /**
      * The {@link Baseline} found for processing
@@ -24,6 +27,10 @@ public class ClearCaseUCMAction implements Action {
     private boolean tagBaseline = false;
     private boolean recommendBaseline = false;
     private boolean setBuildDescription = false;
+
+    public ClearCaseUCMAction( AbstractBuild build ) {
+        this.build = build;
+    }
 
     @Override
     public String getIconFileName() {
