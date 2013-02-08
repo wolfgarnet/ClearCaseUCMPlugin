@@ -28,6 +28,8 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     protected Stream stream;
     protected Project.PromotionLevel level;
 
+    protected String subPath = null;
+
     protected boolean treatUnstableAsSuccessful = false;
 
     public AbstractMode( Component component, Stream stream, Project.PromotionLevel level ) {
@@ -42,6 +44,14 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
 
     public void setTreatUnstableAsSuccessful( boolean treatUnstableAsSuccessful ) {
         this.treatUnstableAsSuccessful = treatUnstableAsSuccessful;
+    }
+
+    public String getSubPath() {
+        return subPath;
+    }
+
+    public void setSubPath( String subPath ) {
+        this.subPath = subPath;
     }
 
     public abstract String getName();

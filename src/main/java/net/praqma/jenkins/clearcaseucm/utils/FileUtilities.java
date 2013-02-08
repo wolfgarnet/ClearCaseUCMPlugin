@@ -31,4 +31,12 @@ public class FileUtilities {
             }
         }
     }
+
+    public static File getViewRoot( File workspace, String subPath ) {
+        if( subPath != null && !subPath.isEmpty() ) {
+            return new File( workspace, subPath );
+        } else {
+            return workspace;
+        }
+    }
 }
