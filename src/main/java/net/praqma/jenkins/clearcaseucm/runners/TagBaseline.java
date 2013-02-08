@@ -22,7 +22,9 @@ public class TagBaseline implements Runner {
     }
 
     @Override
-    public void run( FilePath workspace, BuildListener listener ) throws IOException, InterruptedException {
+    public Result run( FilePath workspace, BuildListener listener, Result result ) {
+
+        return result;
     }
 
     @Override

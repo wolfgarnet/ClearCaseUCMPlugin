@@ -61,6 +61,8 @@ public class ClearCaseUCMNotifier extends Notifier {
             }
         }
 
+        listener.getLogger().println( Common.PRINTNAME + "Final result is " + build.getResult() );
+
         return true;
     }
 

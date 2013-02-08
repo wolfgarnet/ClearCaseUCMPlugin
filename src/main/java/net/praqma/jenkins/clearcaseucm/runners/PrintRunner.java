@@ -2,6 +2,7 @@ package net.praqma.jenkins.clearcaseucm.runners;
 
 import hudson.FilePath;
 import hudson.model.BuildListener;
+import hudson.model.Result;
 import net.praqma.jenkins.clearcaseucm.model.Runner;
 
 import java.io.IOException;
@@ -20,8 +21,10 @@ public class PrintRunner implements Runner {
     }
 
     @Override
-    public void run( FilePath workspace, BuildListener listener ) throws IOException, InterruptedException {
+    public Result run( FilePath workspace, BuildListener listener, Result result ) {
         listener.getLogger().println( message );
+
+        return result;
     }
 
     @Override

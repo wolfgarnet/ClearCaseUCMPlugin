@@ -14,6 +14,5 @@ import java.io.IOException;
 public interface Runner {
     public Result run( FilePath workspace, BuildListener listener, Result result );
     public boolean runOnFailure();
-    public boolean throwOnError();
     public String getName();
 }

@@ -44,11 +44,6 @@ public class RecommendBaseline implements Runner {
     }
 
     @Override
-    public boolean throwOnError() {
-        return false;
-    }
-
-    @Override
     public String getName() {
         return "Recommending " + baseline.getNormalizedName();
     }
