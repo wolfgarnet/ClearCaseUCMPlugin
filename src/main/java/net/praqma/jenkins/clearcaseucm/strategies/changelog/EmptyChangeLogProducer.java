@@ -1,6 +1,7 @@
 package net.praqma.jenkins.clearcaseucm.strategies.changelog;
 
 import hudson.FilePath;
+import hudson.model.BuildListener;
 import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.jenkins.clearcaseucm.model.ChangeLogProducer;
 
@@ -18,7 +19,7 @@ public class EmptyChangeLogProducer extends ChangeLogProducer {
     }
 
     @Override
-    public String produce( Baseline baseline ) throws IOException, InterruptedException {
+    public String produce( Baseline baseline, BuildListener listener ) throws IOException, InterruptedException {
         return "<changelog />";
     }
 }

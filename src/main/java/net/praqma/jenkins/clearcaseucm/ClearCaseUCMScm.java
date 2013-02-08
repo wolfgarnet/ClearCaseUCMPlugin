@@ -93,7 +93,7 @@ public class ClearCaseUCMScm extends SCM {
 
         logger.fine( "Getting change log" );
         ChangeLogProducer changeLogProducer = mode.getChangeLogProducer( workspace );
-        String changelog = changeLogProducer.produce( action.getBaseline() );
+        String changelog = changeLogProducer.produce( action.getBaseline(), listener );
 
         logger.fine( "Writing change log" );
         FileUtilities.writeToFile( changelogFile, changelog );
