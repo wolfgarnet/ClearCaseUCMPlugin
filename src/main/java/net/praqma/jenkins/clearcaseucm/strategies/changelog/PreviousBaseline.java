@@ -22,7 +22,7 @@ public class PreviousBaseline extends ChangeLogProducer {
 
     @Override
     public String produce( Baseline baseline, BuildListener listener ) throws IOException, InterruptedException {
-        listener.getLogger().println( Common.PRINTNAME + "Getting change log for " + baseline );
+
         listener.getLogger().println( Common.PRINTNAME + "Getting change log for " + baseline.getNormalizedName() );
 
         return workspace.act( new PreviousBaselineDiff( baseline ) );
