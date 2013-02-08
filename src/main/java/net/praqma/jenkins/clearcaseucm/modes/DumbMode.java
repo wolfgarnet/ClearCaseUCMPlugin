@@ -46,8 +46,8 @@ public class DumbMode extends AbstractMode {
     }
 
     @Override
-    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace ) {
-        return new EmptyWorkspaceInitializer( build, workspace );
+    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build ) {
+        return new EmptyWorkspaceInitializer( build );
     }
 
     @Override

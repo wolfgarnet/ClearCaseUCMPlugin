@@ -67,7 +67,7 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
 
     public abstract BaselineSelector getBaselineSelector( FilePath workspace );
 
-    public abstract WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace);
+    public abstract WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build );
 
     public abstract ChangeLogProducer getChangeLogProducer( FilePath workspace );
 

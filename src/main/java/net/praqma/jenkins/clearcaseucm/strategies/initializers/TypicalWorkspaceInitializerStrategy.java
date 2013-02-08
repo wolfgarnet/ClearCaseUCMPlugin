@@ -2,9 +2,7 @@ package net.praqma.jenkins.clearcaseucm.strategies.initializers;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
-import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.jenkins.clearcaseucm.model.WorkspaceInitializer;
-import net.praqma.jenkins.clearcaseucm.remote.PreviousBaselineDiff;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +14,12 @@ import java.io.IOException;
  */
 public class TypicalWorkspaceInitializerStrategy extends WorkspaceInitializer {
 
-    public TypicalWorkspaceInitializerStrategy( AbstractBuild<?, ?> build, FilePath workspace ) {
-        super( build, workspace );
+    public TypicalWorkspaceInitializerStrategy( AbstractBuild<?, ?> build ) {
+        super( build );
     }
 
     @Override
-    public void initialize() {
+    public void initialize( FilePath workspace) {
+
     }
 }

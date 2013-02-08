@@ -37,7 +37,7 @@ public class SelfModeTest extends BaseTestClass {
         Stream stream = ccenv.context.streams.get( "one_int" );
         Component component = ccenv.context.components.get( "_System" );
         Project.PromotionLevel level = Project.PromotionLevel.INITIAL;
-        
+
 
         AbstractMode mode = new SelfMode( component, stream, level );
 

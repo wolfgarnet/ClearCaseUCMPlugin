@@ -86,10 +86,10 @@ public class ClearCaseUCMScm extends SCM {
         }
 
         /* Initializing the workspace */
-        WorkspaceInitializer initializer = mode.getWorkspaceInitializer( build, workspace );
+        WorkspaceInitializer initializer = mode.getWorkspaceInitializer( build );
 
         logger.fine( "Initializing workspace" );
-        initializer.initialize();
+        initializer.initialize( workspace );
 
         logger.fine( "Getting change log" );
         ChangeLogProducer changeLogProducer = mode.getChangeLogProducer( workspace );

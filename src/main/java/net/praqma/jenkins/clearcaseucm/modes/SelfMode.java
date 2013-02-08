@@ -37,8 +37,8 @@ public class SelfMode extends AbstractMode {
     }
 
     @Override
-    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace ) {
-        return new TypicalWorkspaceInitializerStrategy( build, workspace );
+    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build ) {
+        return new TypicalWorkspaceInitializerStrategy( build );
     }
 
     @Override

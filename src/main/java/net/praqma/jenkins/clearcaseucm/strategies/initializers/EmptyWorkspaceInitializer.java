@@ -15,11 +15,11 @@ import java.io.IOException;
  */
 public class EmptyWorkspaceInitializer extends WorkspaceInitializer {
 
-    public EmptyWorkspaceInitializer( AbstractBuild<?, ?> build, FilePath workspace ) {
-        super( build, workspace );
+    public EmptyWorkspaceInitializer( AbstractBuild<?, ?> build ) {
+        super( build );
     }
 
     @Override
-    public void initialize() {
+    public void initialize( FilePath workspace ) {
     }
 }
