@@ -7,6 +7,7 @@ import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
+import net.praqma.jenkins.clearcaseucm.ClearCaseUCMAction;
 import net.praqma.jenkins.clearcaseucm.model.*;
 import net.praqma.jenkins.clearcaseucm.runners.PrintRunner;
 import net.praqma.jenkins.clearcaseucm.strategies.changelog.EmptyChangeLogProducer;
@@ -55,10 +56,10 @@ public class DumbMode extends AbstractMode {
     }
 
     @Override
-    public List<Runner> getRunners( Baseline baseline ) {
+    public List<Runner> getRunners( ClearCaseUCMAction action ) {
         List<Runner> runners = new ArrayList<Runner>();
 
-        runners.add( new PrintRunner( "PRINTING: " + baseline.getNormalizedName() ) );
+        runners.add( new PrintRunner( "PRINTING: " + action.getBaseline().getNormalizedName() ) );
 
         return runners;
     }
