@@ -132,7 +132,7 @@
         
         
         <profile>
-            <id>integration-tests</id>
+            <id>functionalTesting</id>
 
             <build>
             
@@ -151,7 +151,7 @@
                         <configuration>
                             <includes>
                                 <!-- <include>net/praqma/hudson/test/integration/child/*.java</include> -->
-                                <include>net/praqma/hudson/test/integration/*/*.java</include>
+                                <include>net/praqma/jenkins/clearcaseucm/mode/*.java</include>
                                 <!-- <include>net/praqma/hudson/test/integration/child/GetBaselinesTest.java</include> -->
                             </includes>
                         </configuration>
