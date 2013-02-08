@@ -1,6 +1,7 @@
 package net.praqma.jenkins.clearcaseucm.model;
 
 import hudson.FilePath;
+import hudson.model.BuildListener;
 import net.praqma.clearcase.ucm.entities.Baseline;
 
 import java.io.IOException;
@@ -18,5 +19,5 @@ public abstract class ChangeLogProducer {
         this.workspace = workspace;
     }
 
-    public abstract String produce( Baseline baseline ) throws IOException, InterruptedException;
+    public abstract String produce( Baseline baseline, BuildListener listener ) throws IOException, InterruptedException;
 }
