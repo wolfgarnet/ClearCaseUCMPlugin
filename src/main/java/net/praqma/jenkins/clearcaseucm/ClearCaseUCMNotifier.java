@@ -46,7 +46,7 @@ public class ClearCaseUCMNotifier extends Notifier {
 
         ClearCaseUCMAction action = mode.getAction( build );
 
-        for( Runner runner : mode.getRunners( action.getBaseline() ) ) {
+        for( Runner runner : mode.getRunners( action ) ) {
             listener.getLogger().println( Common.PRINTNAME + "Running " + runner.getName() );
             logger.info( "Current RESULT: " + build.getResult() );
 

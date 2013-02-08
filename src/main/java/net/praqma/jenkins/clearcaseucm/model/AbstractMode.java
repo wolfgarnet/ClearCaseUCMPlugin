@@ -64,10 +64,10 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
 
     public abstract ChangeLogProducer getChangeLogProducer( FilePath workspace );
 
-    public List<Runner> getRunners( Baseline baseline ) {
+    public List<Runner> getRunners( ClearCaseUCMAction action ) {
         List<Runner> runners = new ArrayList<Runner>();
 
-        runners.add( new RecommendBaseline( baseline ) );
+        runners.add( new RecommendBaseline( action.getBaseline() ) );
 
         return runners;
     }
