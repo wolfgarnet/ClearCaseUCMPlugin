@@ -1,14 +1,18 @@
 package net.praqma.jenkins.clearcaseucm.junit;
 
+import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.*;
+import hudson.model.listeners.RunListener;
 import net.praqma.jenkins.clearcaseucm.ClearCaseUCMScm;
+import net.praqma.logging.LoggingUtil;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.TestBuilder;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**

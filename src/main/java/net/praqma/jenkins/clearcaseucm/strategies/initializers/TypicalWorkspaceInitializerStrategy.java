@@ -34,6 +34,7 @@ public class TypicalWorkspaceInitializerStrategy extends WorkspaceInitializer {
         this.buildProject = buildProject;
         this.targetStream = targetStream;
         this.loadModules = loadModules;
+        this.baseline = baseline;
     }
 
     @Override

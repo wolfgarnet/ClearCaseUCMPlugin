@@ -15,6 +15,7 @@ import net.praqma.hudson.exception.ScmException;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -46,6 +47,7 @@ public class Common {
             try {
                 project = Project.get( "hudson", bl.getPVob() ).load();
             } catch( Exception eh ) {
+                logger.log( Level.FINEST, "Failed first attempt", eh );
                 try {
                     project = Project.get( "Hudson", bl.getPVob() ).load();
                 } catch( Exception eH ) {
@@ -55,7 +57,7 @@ public class Common {
                         try {
                             project = Project.get( "Jenkins", bl.getPVob() ).load();
                         } catch( Exception eJ ) {
-                            logger.fine( "Using current project as build project" );
+                            logger.severe( "Using current project as build project" );
                             try {
                                 project = bl.getStream().load().getProject();
                             } catch( Exception e ) {

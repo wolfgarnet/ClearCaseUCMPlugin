@@ -2,7 +2,9 @@ package net.praqma.jenkins.clearcaseucm.mode;
 
 import hudson.model.AbstractBuild;
 import hudson.model.FreeStyleProject;
+import hudson.model.Hudson;
 import hudson.model.Result;
+import jenkins.model.Jenkins;
 import net.praqma.clearcase.test.annotations.ClearCaseUniqueVobName;
 import net.praqma.clearcase.test.junit.ClearCaseRule;
 import net.praqma.clearcase.ucm.entities.Baseline;
@@ -38,12 +40,12 @@ public class SelfModeTest extends BaseTestClass {
         Component component = ccenv.context.components.get( "_System" );
         Project.PromotionLevel level = Project.PromotionLevel.INITIAL;
 
-
         AbstractMode mode = new SelfMode( component, stream, level );
 
         ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
 
         FreeStyleProject project = jenkins.createProject( "self-text", scm );
+        //Jenkins.getInstance().getExtensionList()
 
         AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
 
