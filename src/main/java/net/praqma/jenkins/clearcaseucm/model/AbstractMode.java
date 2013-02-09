@@ -108,7 +108,7 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
         List<Runner> runners = new ArrayList<Runner>();
 
         if( recommendBaseline ) {
-            runners.add( new RecommendBaseline( action.getBaseline() ) );
+            runners.add( new RecommendBaseline( action.getBaseline(), stream ) );
         }
 
         if( promoteBaseline ) {
