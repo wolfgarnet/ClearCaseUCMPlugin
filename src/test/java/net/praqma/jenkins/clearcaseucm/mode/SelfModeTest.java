@@ -45,7 +45,7 @@ public class SelfModeTest extends BaseTestClass {
 
         ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
 
-        FreeStyleProject project = jenkins.createProject( "self-text", scm );
+        FreeStyleProject project = jenkins.createProject( "self-test", scm );
 
         AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
 
@@ -66,7 +66,7 @@ public class SelfModeTest extends BaseTestClass {
 
         ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
 
-        FreeStyleProject project = jenkins.createProject( "self-text", scm );
+        FreeStyleProject project = jenkins.createProject( "self-test-recommend", scm );
 
         AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
 
