@@ -27,7 +27,7 @@ public class PromoteBaseline implements Runner {
     @Override
     public Result run( FilePath workspace, BuildListener listener, Result result ) {
         try {
-            Project.PromotionLevel level = null;
+            Project.PromotionLevel level = baseline.getPromotionLevel( false );
             if( treatUnstableAsSuccessful && result.isBetterOrEqualTo( Result.UNSTABLE ) ) {
                 level = Project.promoteFrom( level );
             } else {
