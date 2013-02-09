@@ -75,4 +75,26 @@ public class SelfModeTest extends BaseTestClass {
 
         new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.INITIAL, baseline, true ).validate();
     }
+
+
+    @Test
+    @ClearCaseUniqueVobName( name = "promote" )
+    public void promote() throws IOException, ExecutionException, InterruptedException, ClearCaseException {
+        Stream stream = ccenv.context.streams.get( "one_int" );
+        Component component = ccenv.context.components.get( "_System" );
+        Project.PromotionLevel level = Project.PromotionLevel.INITIAL;
+
+        AbstractMode mode = new SelfMode( component, stream, level );
+        mode.setPromoteBaseline( true );
+
+        ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
+
+        FreeStyleProject project = jenkins.createProject( "self-test-promote", scm );
+
+        AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
+
+        Baseline baseline = ccenv.context.baselines.get( "model-1" );
+
+        new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.BUILT, baseline ).validate();
+    }
 }
