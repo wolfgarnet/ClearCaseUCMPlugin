@@ -130,6 +130,7 @@ public class SystemValidator {
 		if( builtBaselineIsRecommended != null ) {
 			System.out.println( "[assert] " + baseline.getNormalizedName() + " must " + (builtBaselineIsRecommended?"":"not ") + "be recommended" );
 			Stream stream = getStream().load();
+            System.out.println( "FOUND STREAM IS " + stream );
 			List<Baseline> rbls = stream.getRecommendedBaselines();
 			assertEquals( 1, rbls.size() );
 			if( builtBaselineIsRecommended ) {
