@@ -50,6 +50,7 @@ public class SelfModeTest extends BaseTestClass {
         AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
 
         Baseline baseline = ccenv.context.baselines.get( "model-1" );
+        System.out.println( "BASELINE IS " + baseline );
 
         new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.INITIAL, baseline ).validate();
     }
