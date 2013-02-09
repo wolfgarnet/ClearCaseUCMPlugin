@@ -114,7 +114,7 @@ public class Common {
         try {
             if( viewroot.exists() ) {
                 pathExists = true;
-                hudsonOut.println( "[" + Config.nameShort + "] Reusing view root" );
+                hudsonOut.println( PRINTNAME + "Reusing view root" );
             } else {
                 if( viewroot.mkdir() ) {
                 } else {
@@ -126,18 +126,18 @@ public class Common {
 
         }
 
-        hudsonOut.println( "[" + Config.nameShort + "] Determine if view tag exists" );
+        hudsonOut.println( PRINTNAME + "Determine if view tag exists" );
         if( UCMView.viewExists( viewtag ) ) {
-            hudsonOut.println( "[" + Config.nameShort + "] Reusing view tag" );
+            hudsonOut.println( PRINTNAME + "Reusing view tag" );
             try {
                 String vt = SnapshotView.viewrootIsValid( viewroot );
-                hudsonOut.println( "[" + Config.nameShort + "] UUID resulted in " + vt );
+                hudsonOut.println( PRINTNAME + "UUID resulted in " + vt );
                 /* Not the correct view tag given the view */
                 if( !vt.equals( viewtag ) && pathExists ) {
-                    hudsonOut.println( "[" + Config.nameShort + "] View tag is not the same as " + vt );
+                    hudsonOut.println( PRINTNAME + "View tag is not the same as " + vt );
                     /* Delete view */
                     FilePath path = new FilePath( viewroot );
-                    hudsonOut.println( "[" + Config.nameShort + "] Trying to delete " + path );
+                    hudsonOut.println( PRINTNAME + "Trying to delete " + path );
                     try {
                         path.deleteRecursive();
                     } catch( Exception e ) {
@@ -147,7 +147,7 @@ public class Common {
                 }
             } catch( ClearCaseException ucmE ) {
                 try {
-                    hudsonOut.println( "[" + Config.nameShort + "] Regenerating invalid view root" );
+                    hudsonOut.println( PRINTNAME + "Regenerating invalid view root" );
                     UCMView.end( viewtag );
                     SnapshotView.regenerateViewDotDat( viewroot, viewtag );
                 } catch( ClearCaseException ucmEx ) {
@@ -157,11 +157,11 @@ public class Common {
                     throw new ScmException( "Could not make workspace - could not regenerate view", e );
                 }
             } catch( Exception e ) {
-                hudsonOut.println( "[" + Config.nameShort + "] Failed making workspace: " + e.getMessage() );
+                hudsonOut.println( PRINTNAME + "Failed making workspace: " + e.getMessage() );
                 throw new ScmException( "Failed making workspace", e );
             }
 
-            hudsonOut.println( "[" + Config.nameShort + "] Getting snapshotview" );
+            hudsonOut.println( PRINTNAME + "Getting snapshotview" );
             try {
                 snapview = SnapshotView.get( viewroot );
             } catch( ClearCaseException e ) {
@@ -172,10 +172,10 @@ public class Common {
             }
         } else {
             try {
-                hudsonOut.println( "[" + Config.nameShort + "] Creating new view" );
+                hudsonOut.println( PRINTNAME + "Creating new view" );
                 snapview = SnapshotView.create( stream, viewroot, viewtag );
 
-                hudsonOut.println( "[" + Config.nameShort + "] Created new view in local workspace: " + viewroot.getAbsolutePath() );
+                hudsonOut.println( PRINTNAME + "Created new view in local workspace: " + viewroot.getAbsolutePath() );
             } catch( ClearCaseException e ) {
                 e.print( hudsonOut );
                 throw new ScmException( "View not found in this region, but views with viewtag '" + viewtag + "' might exist in the other regions. Try changing the region Hudson or the slave runs in.", e );
@@ -186,7 +186,7 @@ public class Common {
 
         if( update ) {
             try {
-                hudsonOut.println( "[" + Config.nameShort + "] Updating view using " + loadModule.toLowerCase() + " modules." );
+                hudsonOut.println( PRINTNAME + "Updating view using " + loadModule.toLowerCase() + " modules." );
                 snapview.Update( true, true, true, false, new SnapshotView.LoadRules( snapview, SnapshotView.Components.valueOf( loadModule.toUpperCase() ) ) );
             } catch( ClearCaseException e ) {
                 e.print( hudsonOut );
