@@ -39,7 +39,7 @@ public class TypicalWorkspaceInitializerStrategy extends WorkspaceInitializer {
 
     @Override
     public void initialize( FilePath workspace, BuildListener listener ) throws IOException, InterruptedException {
-        listener.getLogger().println( Common.PRINTNAME + "Initializing workspace in " + subPath );
+        listener.getLogger().println( Common.PRINTNAME + "Initializing workspace in " + ( subPath != null ? subPath : "/" ) );
         workspace.act( new MakeWorkspace( listener, viewTag, subPath, buildProject, baseline, targetStream, loadModules ) );
     }
 }
