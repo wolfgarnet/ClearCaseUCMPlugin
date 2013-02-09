@@ -62,6 +62,38 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
         this.subPath = subPath;
     }
 
+    public boolean isTagBaseline() {
+        return tagBaseline;
+    }
+
+    public void setTagBaseline( boolean tagBaseline ) {
+        this.tagBaseline = tagBaseline;
+    }
+
+    public boolean isRecommendBaseline() {
+        return recommendBaseline;
+    }
+
+    public void setRecommendBaseline( boolean recommendBaseline ) {
+        this.recommendBaseline = recommendBaseline;
+    }
+
+    public boolean isPromoteBaseline() {
+        return promoteBaseline;
+    }
+
+    public void setPromoteBaseline( boolean promoteBaseline ) {
+        this.promoteBaseline = promoteBaseline;
+    }
+
+    public boolean isSetBuildDescription() {
+        return setBuildDescription;
+    }
+
+    public void setSetBuildDescription( boolean setBuildDescription ) {
+        this.setBuildDescription = setBuildDescription;
+    }
+
     public abstract String getName();
 
     public abstract Poller getPoller();

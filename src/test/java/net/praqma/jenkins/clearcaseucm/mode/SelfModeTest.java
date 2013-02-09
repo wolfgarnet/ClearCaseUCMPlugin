@@ -5,6 +5,7 @@ import hudson.model.FreeStyleProject;
 import hudson.model.Hudson;
 import hudson.model.Result;
 import jenkins.model.Jenkins;
+import net.praqma.clearcase.exceptions.ClearCaseException;
 import net.praqma.clearcase.test.annotations.ClearCaseUniqueVobName;
 import net.praqma.clearcase.test.junit.ClearCaseRule;
 import net.praqma.clearcase.ucm.entities.Baseline;
@@ -35,7 +36,7 @@ public class SelfModeTest extends BaseTestClass {
 
     @Test
     @ClearCaseUniqueVobName( name = "none" )
-    public void test() throws IOException, ExecutionException, InterruptedException {
+    public void test() throws IOException, ExecutionException, InterruptedException, ClearCaseException {
         Stream stream = ccenv.context.streams.get( "one_int" );
         Component component = ccenv.context.components.get( "_System" );
         Project.PromotionLevel level = Project.PromotionLevel.INITIAL;
@@ -45,12 +46,32 @@ public class SelfModeTest extends BaseTestClass {
         ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
 
         FreeStyleProject project = jenkins.createProject( "self-text", scm );
-        //Jenkins.getInstance().getExtensionList()
 
         AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
 
         Baseline baseline = ccenv.context.baselines.get( "model-1" );
 
-        new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.INITIAL, baseline );
+        new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.INITIAL, baseline ).validate();
+    }
+
+    @Test
+    @ClearCaseUniqueVobName( name = "recommend" )
+    public void recommend() throws IOException, ExecutionException, InterruptedException, ClearCaseException {
+        Stream stream = ccenv.context.streams.get( "one_int" );
+        Component component = ccenv.context.components.get( "_System" );
+        Project.PromotionLevel level = Project.PromotionLevel.INITIAL;
+
+        AbstractMode mode = new SelfMode( component, stream, level );
+        mode.setRecommendBaseline( true );
+
+        ClearCaseUCMScm scm = new ClearCaseUCMScm( mode );
+
+        FreeStyleProject project = jenkins.createProject( "self-text", scm );
+
+        AbstractBuild build = new ClearCaseUCMRule.ProjectBuilder( project ).build();
+
+        Baseline baseline = ccenv.context.baselines.get( "model-1" );
+
+        new SystemValidator( build ).validateBuild( Result.SUCCESS ).validateBuiltBaseline( Project.PromotionLevel.INITIAL, baseline, true ).validate();
     }
 }
