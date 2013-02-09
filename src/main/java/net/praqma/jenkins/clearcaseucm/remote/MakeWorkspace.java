@@ -119,7 +119,7 @@ public class MakeWorkspace implements FilePath.FileCallable<Boolean> {
             if( Stream.streamExists( streamname + "@" + pvob ) ) {
                 devstream = Stream.get( streamname, pvob );
             } else {
-                if( buildProject.isEmpty() ) {
+                if( buildProject != null && buildProject.isEmpty() ) {
                     buildProject = null;
                 }
                 devstream = Stream.create( Common.getIntegrationStream( selectedBaseline, buildProject ), streamname + "@" + pvob, true, selectedBaseline );
