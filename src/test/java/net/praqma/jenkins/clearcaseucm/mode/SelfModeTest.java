@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException;
 public class SelfModeTest extends BaseTestClass {
 
     @Rule
-    public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm" );
+    public static ClearCaseRule ccenv = new ClearCaseRule( "clearcaseucm", "setup.xml" );
 
     @Test
     @ClearCaseUniqueVobName( name = "none" )
