@@ -77,8 +77,9 @@ public class ClearCaseUCMScm extends SCM {
         List<Baseline> baselines = selector.getValidBaselines();
         printBaselines( baselines, out );
 
+        Baseline baseline = null;
         try {
-            Baseline baseline = selector.selectBaseline( baselines );
+            baseline = selector.selectBaseline( baselines );
             action.setBaseline( baseline );
             out.println( Common.PRINTNAME + "Found " + baseline.getNormalizedName() );
         } catch( CCUCMException e ) {
@@ -86,10 +87,10 @@ public class ClearCaseUCMScm extends SCM {
         }
 
         /* Initializing the workspace */
-        WorkspaceInitializer initializer = mode.getWorkspaceInitializer( build );
+        WorkspaceInitializer initializer = mode.getWorkspaceInitializer( build, baseline );
 
         logger.fine( "Initializing workspace" );
-        initializer.initialize( workspace );
+        initializer.initialize( workspace, listener );
 
         logger.fine( "Getting change log" );
         ChangeLogProducer changeLogProducer = mode.getChangeLogProducer( workspace );

@@ -2,9 +2,11 @@ package net.praqma.jenkins.clearcaseucm.modes;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
+import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
+import net.praqma.clearcase.ucm.view.SnapshotView;
 import net.praqma.jenkins.clearcaseucm.model.*;
 import net.praqma.jenkins.clearcaseucm.strategies.changelog.PreviousBaseline;
 import net.praqma.jenkins.clearcaseucm.strategies.initializers.TypicalWorkspaceInitializerStrategy;
@@ -37,8 +39,10 @@ public class SelfMode extends AbstractMode {
     }
 
     @Override
-    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build ) {
-        return new TypicalWorkspaceInitializerStrategy( build );
+    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build, Baseline baseline ) {
+        String viewtag = WorkspaceInitializer.makeViewtag( build.getProject().getDisplayName() );
+
+        return new TypicalWorkspaceInitializerStrategy( build, subPath, viewtag, null, baseline, stream, "ALL" );
     }
 
     @Override

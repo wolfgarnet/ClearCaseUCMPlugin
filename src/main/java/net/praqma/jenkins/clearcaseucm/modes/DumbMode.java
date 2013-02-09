@@ -46,7 +46,7 @@ public class DumbMode extends AbstractMode {
     }
 
     @Override
-    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build ) {
+    public WorkspaceInitializer getWorkspaceInitializer( AbstractBuild<?, ?> build, Baseline baseline ) {
         return new EmptyWorkspaceInitializer( build );
     }
 

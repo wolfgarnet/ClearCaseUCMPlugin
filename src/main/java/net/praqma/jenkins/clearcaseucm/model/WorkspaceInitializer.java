@@ -2,6 +2,7 @@ package net.praqma.jenkins.clearcaseucm.model;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,5 +20,12 @@ public abstract class WorkspaceInitializer {
         this.build = build;
     }
 
-    public abstract void initialize( FilePath workspace );
+    public abstract void initialize( FilePath workspace, BuildListener listener ) throws IOException, InterruptedException;
+
+    public static String makeViewtag( String jobname ) {
+        String newJobName = jobname.replaceAll("\\s", "_");
+        String viewtag = "CCUCM_" + newJobName + "_" + System.getenv( "COMPUTERNAME" );
+
+        return viewtag;
+    }
 }
