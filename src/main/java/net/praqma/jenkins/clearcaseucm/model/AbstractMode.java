@@ -107,6 +107,8 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
     public List<Runner> getRunners( ClearCaseUCMAction action ) {
         List<Runner> runners = new ArrayList<Runner>();
 
+        /* Remember this is only valid when polling self.
+         * When polling childs, the stream value is NOT valid */
         if( recommendBaseline ) {
             runners.add( new RecommendBaseline( action.getBaseline(), stream ) );
         }
