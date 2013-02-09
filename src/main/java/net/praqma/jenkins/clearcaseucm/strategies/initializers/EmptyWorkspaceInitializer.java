@@ -2,6 +2,7 @@ package net.praqma.jenkins.clearcaseucm.strategies.initializers;
 
 import hudson.FilePath;
 import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
 import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.jenkins.clearcaseucm.model.WorkspaceInitializer;
 
@@ -20,6 +21,6 @@ public class EmptyWorkspaceInitializer extends WorkspaceInitializer {
     }
 
     @Override
-    public void initialize( FilePath workspace ) {
+    public void initialize( FilePath workspace, BuildListener listener ) {
     }
 }
