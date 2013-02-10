@@ -68,6 +68,8 @@ public class ClearCaseUCMScm extends SCM {
     @Override
     public boolean checkout( AbstractBuild<?, ?> build, Launcher launcher, FilePath workspace, BuildListener listener, File changelogFile ) throws IOException, InterruptedException {
 
+        mode.printConfiguration( listener.getLogger() );
+
         ClearCaseUCMAction action = mode.createAction( build );
 
         /* Selecting a baseline */
