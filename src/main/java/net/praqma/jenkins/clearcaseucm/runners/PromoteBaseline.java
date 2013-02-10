@@ -28,14 +28,14 @@ public class PromoteBaseline implements Runner {
     public Result run( FilePath workspace, BuildListener listener, Result result ) {
         try {
             Project.PromotionLevel level = baseline.getPromotionLevel( false );
-            listener.getLogger().println( "LEVEL IS " + level );
+
             if( result.isBetterOrEqualTo( Result.SUCCESS ) || ( treatUnstableAsSuccessful && result.isBetterOrEqualTo( Result.UNSTABLE ) ) ) {
                 level = Project.promoteFrom( level );
             } else {
                 level = Project.PromotionLevel.REJECTED;
             }
 
-            listener.getLogger().println( Common.PRINTNAME + "Setting promotion level of " + baseline.getNormalizedName() + " to " + level );
+            listener.getLogger().println( Common.PRINTNAME + "Setting " + baseline.getNormalizedName() + "'s  promotion level to " + level );
 
             workspace.act( new RemoteBaselinePromotion( baseline, level ) );
 

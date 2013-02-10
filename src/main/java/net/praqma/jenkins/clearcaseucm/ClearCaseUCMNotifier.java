@@ -47,7 +47,7 @@ public class ClearCaseUCMNotifier extends Notifier {
         ClearCaseUCMAction action = mode.getAction( build );
 
         for( Runner runner : mode.getRunners( action ) ) {
-            listener.getLogger().println( Common.PRINTNAME + "Running " + runner.getName() );
+            listener.getLogger().println( Common.PRINTNAME + "[[" + runner.getName() + "]]" );
             logger.info( "Current RESULT: " + build.getResult() );
 
             boolean success = mode.doTreatUnstableAsSuccessful() ? build.getResult().isBetterOrEqualTo( Result.UNSTABLE ) : build.getResult().isBetterThan( Result.UNSTABLE );
@@ -76,7 +76,7 @@ public class ClearCaseUCMNotifier extends Notifier {
 
         @Override
         public String getDisplayName() {
-            return "JAJA";
+            return "";
         }
     }
 }

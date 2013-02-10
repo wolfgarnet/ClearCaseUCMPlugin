@@ -48,6 +48,6 @@ public class RecommendBaseline implements Runner {
 
     @Override
     public String getName() {
-        return "Recommending " + baseline.getNormalizedName();
+        return "Recommend baseline";
     }
 }
