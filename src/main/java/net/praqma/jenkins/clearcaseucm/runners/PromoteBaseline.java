@@ -28,7 +28,8 @@ public class PromoteBaseline implements Runner {
     public Result run( FilePath workspace, BuildListener listener, Result result ) {
         try {
             Project.PromotionLevel level = baseline.getPromotionLevel( false );
-            if( treatUnstableAsSuccessful && result.isBetterOrEqualTo( Result.UNSTABLE ) ) {
+            listener.getLogger().println( "LEVEL IS " + level );
+            if( result.isBetterOrEqualTo( Result.SUCCESS ) || ( treatUnstableAsSuccessful && result.isBetterOrEqualTo( Result.UNSTABLE ) ) ) {
                 level = Project.promoteFrom( level );
             } else {
                 level = Project.PromotionLevel.REJECTED;
