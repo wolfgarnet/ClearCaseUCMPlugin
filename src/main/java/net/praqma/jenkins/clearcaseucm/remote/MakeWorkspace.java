@@ -85,14 +85,14 @@ public class MakeWorkspace implements FilePath.FileCallable<Boolean> {
             out.println( " Done" );
         }
 
-        out.print( "[" + Config.nameShort + "] Rebasing development stream (" + devstream.getShortname() + ") against parent stream (" + targetStream.getShortname() + ")" );
+        out.print( Common.PRINTNAME + "Rebase development stream (" + devstream.getShortname() + ") against parent stream (" + targetStream.getShortname() + ")" );
         try {
-            logger.fine( "Rebasing" );
+            logger.fine( "Rebase" );
             Rebase rebase = new Rebase( devstream, sv, selectedBaseline );
             rebase.rebase( true );
-            logger.fine( "Rebasing done" );
+            logger.fine( "Rebase done" );
         } catch( RebaseException e1 ) {
-            logger.fine( "Rebasing failed: " + e1.getMessage() );
+            logger.fine( "Rebase failed: " + e1.getMessage() );
             out.println( " Failed" );
             throw e1;
         }
@@ -100,7 +100,7 @@ public class MakeWorkspace implements FilePath.FileCallable<Boolean> {
         out.println( " Done" );
 
         try {
-            out.println("[" + Config.nameShort + "] Updating view using " + loadModule.toLowerCase() + " modules");
+            out.println( Common.PRINTNAME + "Updating view using " + loadModule.toLowerCase() + " modules" );
             logger.fine( "Updating stream" );
             //sv.Update(true, true, true, false, Components.valueOf(loadModule.toUpperCase()), null);
             sv.Update(true, true, true, false, new SnapshotView.LoadRules( sv, SnapshotView.Components.valueOf( loadModule.toUpperCase() ) ));

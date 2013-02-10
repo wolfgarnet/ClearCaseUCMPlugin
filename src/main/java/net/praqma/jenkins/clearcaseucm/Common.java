@@ -192,7 +192,7 @@ public class Common {
                 e.print( hudsonOut );
                 if( e instanceof ViewException ) {
                     if( ((ViewException)e).getType().equals( ViewException.Type.REBASING ) ) {
-                        hudsonOut.println( "The view is currently being used to rebase another stream" );
+                        hudsonOut.println( PRINTNAME + "The view is currently being used to rebase another stream" );
                     }
                 }
                 throw new ScmException( "Could not update snapshot view", e );

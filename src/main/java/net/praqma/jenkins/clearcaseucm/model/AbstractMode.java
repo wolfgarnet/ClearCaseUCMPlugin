@@ -6,18 +6,22 @@ import hudson.FilePath;
 import hudson.model.AbstractBuild;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
+import hudson.model.Hudson;
 import jenkins.model.Jenkins;
 import net.praqma.clearcase.ucm.entities.Baseline;
 import net.praqma.clearcase.ucm.entities.Component;
 import net.praqma.clearcase.ucm.entities.Project;
 import net.praqma.clearcase.ucm.entities.Stream;
 import net.praqma.jenkins.clearcaseucm.ClearCaseUCMAction;
+import net.praqma.jenkins.clearcaseucm.Common;
 import net.praqma.jenkins.clearcaseucm.runners.PromoteBaseline;
 import net.praqma.jenkins.clearcaseucm.runners.RecommendBaseline;
 import net.praqma.jenkins.clearcaseucm.runners.TagBaseline;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author cwolfgang
@@ -25,6 +29,7 @@ import java.util.List;
  *         Time: 14:04
  */
 public abstract class AbstractMode implements Describable<AbstractMode>, ExtensionPoint {
+    private static Logger logger = Logger.getLogger( AbstractMode.class.getName() );
 
     protected Component component;
     protected Stream stream;
@@ -151,6 +156,21 @@ public abstract class AbstractMode implements Describable<AbstractMode>, Extensi
         }
 
         return list;
+    }
+
+    public void printConfiguration( PrintStream out ) {
+
+        String version = Hudson.getInstance().getPlugin( "clearcase-ucm-plugin" ).getWrapper().getVersion();
+        out.println( Common.PRINTNAME + "ClearCase UCM Plugin version " + version );
+
+        out.println( Common.PRINTNAME + "Configuration for build :" );
+        out.println( Common.PRINTNAME + " * Stream:          " + stream.getNormalizedName() );
+        out.println( Common.PRINTNAME + " * Component:       " + component.getNormalizedName() );
+        out.println( Common.PRINTNAME + " * Promotion level: " + level );
+
+        out.println( "" );
+
+        logger.info( "ClearCase UCM Plugin version: " + version );
     }
 
     @Override
