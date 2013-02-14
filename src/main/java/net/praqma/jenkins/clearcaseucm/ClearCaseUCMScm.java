@@ -83,7 +83,7 @@ public class ClearCaseUCMScm extends SCM {
         try {
             baseline = selector.selectBaseline( baselines );
             action.setBaseline( baseline );
-            out.println( Common.PRINTNAME + "Found " + baseline.getNormalizedName() );
+            out.println( Common.PRINTNAME + "Selecting the Baseline " + baseline.getNormalizedName() );
         } catch( CCUCMException e ) {
             throw new AbortException( e.getMessage() );
         }
