@@ -143,7 +143,7 @@ class RemotePostBuild implements FileCallable<Status> {
 				/* Recommend the Baseline */
 				if( recommend ) {
 					try {
-						targetstream.recommendBaseline( targetbaseline );
+						targetstream.recommendBaseline( targetbaseline, true );
 						hudsonOut.println( CCUCMNotifier.logShortPrefix+" Baseline " + targetbaseline.getShortname() + " is now recommended." );
 					} catch( ClearCaseException e ) {
 						status.setStable( false );
